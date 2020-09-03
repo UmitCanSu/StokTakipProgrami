@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="StokTakipUygulamasi.UserController.SatisYap"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StokTakipUygulamasi.UserController"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <Grid>
+        <Canvas>
+            <Label Content="Barkod No:" Width="100" Height="26"  VerticalAlignment="Top" HorizontalAlignment="Left" Canvas.Left="544" Canvas.Top="67"/>
+            <TextBox x:Name="txtBarkodNo" Width="100" Height="26" Canvas.Left="649" Canvas.Top="67"/>
+        </Canvas>
+
+    </Grid>
+</UserControl>
