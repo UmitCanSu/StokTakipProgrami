@@ -112,8 +112,14 @@
     <Compile Include="UrunEkle.xaml.cs">
       <DependentUpon>UrunEkle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UrunGuncelle.xaml.cs">
+      <DependentUpon>UrunGuncelle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserController\SatisYap.xaml.cs">
       <DependentUpon>SatisYap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserController\ucIndirimdekiler.xaml.cs">
+      <DependentUpon>ucIndirimdekiler.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserController\ucUrunler.xaml.cs">
       <DependentUpon>ucUrunler.xaml</DependentUpon>
@@ -145,7 +151,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UrunGuncelle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserController\SatisYap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserController\ucIndirimdekiler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

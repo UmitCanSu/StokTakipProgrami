@@ -25,9 +25,12 @@ namespace StokTakipUygulamasi
     /// </summary>
     public partial class UrunEkle : Window
     {
-        public UrunEkle()
+        DataGrid grid;
+        public UrunEkle(DataGrid gelen_grid)
         {
+            this.grid = gelen_grid;
             InitializeComponent();
+            cmb_UrunOlcuBirimi = Baglanti.OlcuBirimleri(cmb_UrunOlcuBirimi);
         }
        
         private void btnKapat_Click(object sender, RoutedEventArgs e)
@@ -81,13 +84,15 @@ namespace StokTakipUygulamasi
             
         }
         
+        
         private void btn_Urunu_Ekle_Click(object sender, RoutedEventArgs e)
         {
             if (txtUrunAdi.Text != "" && cmb_UrunOlcuBirimi.Text != "")
             {
                 Prm veri = new Prm();
                 Prm.BarkodNo = txtBarkodNo.Text;
-                veri.Olcu_Birimi_ID = Convert.ToInt32(cmb_UrunOlcuBirimi.Text);
+                veri.Olcu_Birimi = cmb_UrunOlcuBirimi.Text;
+                veri.Olcu_Birimi_ID = Baglanti.Olcu_Birimi_ID_Bul(veri.Olcu_Birimi);
                 veri.UrunAdi = txtUrunAdi.Text;
                 veri.Satista_Mi = checkbox_satistami.IsEnabled;
                 veri.Barkod_No = txtBarkodNo.Text;
@@ -134,6 +139,7 @@ namespace StokTakipUygulamasi
                 //ucUrunler uc = new ucUrunler();
                 if (Baglanti.EklemeIslemi(veri))
                 {
+                    Baglanti.GridiDoldur(grid);
                     Prm.Hata = 0;
                     Prm.BilgiMesajiAlani = "Ürün başarıyla eklendi...";
                     BilgiEkrani be = new BilgiEkrani();
@@ -168,9 +174,9 @@ namespace StokTakipUygulamasi
             {
 
                 // Belgelerim klasöründe StokTakipProgrami ve içinde Resimler klasörü yoksa oluştur diyoruz. Varsa zaten aşağıdaki işlemleri yapacak.
-                if (!Directory.Exists(Prm.BelgelerimYolu+"\\StokTakipProgrami\\Resimler"))
+                if (!Directory.Exists(Prm.BelgelerimYolu+"\\StokTakipProgrami\\UrunResimleri"))
                 {
-                    Directory.CreateDirectory(Prm.BelgelerimYolu+"\\StokTakipProgrami\\Resimler");  // Belgelerimin içine Resimler adlı klasör oluşturuyoruz.
+                    Directory.CreateDirectory(Prm.BelgelerimYolu+"\\StokTakipProgrami\\UrunResimleri");  // Belgelerimin içine Resimler adlı klasör oluşturuyoruz.
                 }
 
                 // OpenFileDialog ile resim seçme işlemi yapıyoruz.
@@ -185,7 +191,7 @@ namespace StokTakipUygulamasi
                     SecilenResimAdi = dialog.FileName;
                     DateTime zaman = DateTime.Now;
                     string format = "dd-MM-yyyy-hh-mm-ss";
-                    Prm.ResimAdi = Prm.BelgelerimYolu + "\\StokTakipProgrami\\Resimler\\"+Prm.BarkodNo+zaman.ToString(format)+".png"; // BarkodNo + Zaman ismini ver. (Şöyle bir dosya oluşturacağım diyoruz)
+                    Prm.ResimAdi = Prm.BelgelerimYolu + "\\StokTakipProgrami\\UrunResimleri\\"+Prm.BarkodNo+zaman.ToString(format)+".png"; // BarkodNo + Zaman ismini ver. (Şöyle bir dosya oluşturacağım diyoruz)
                     
                     File.Copy(SecilenResimAdi,Prm.ResimAdi,true);  // Aynı dosyayı iki kere oluşturuyoruz. Sadece ismini farklı yapıyoruz. Önceki resmi silmiyoruz.
                     

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\semih\OneDrive\Masaüstü\StokTakipUygulamasi\StokTakipUygulamasi\App.xaml
-722293713
+9-1522707688
 1-326207090
-161051354090
+18-1920247118
 83-1662466199
-Anasayfa.xaml;BilgiEkrani.xaml;mainwindow.xaml;UrunEkle.xaml;UserController\SatisYap.xaml;UserController\ucUrunler.xaml;UserController\ucAnasayfa.xaml;
+Anasayfa.xaml;BilgiEkrani.xaml;mainwindow.xaml;UrunEkle.xaml;UrunGuncelle.xaml;UserController\SatisYap.xaml;UserController\ucIndirimdekiler.xaml;UserController\ucUrunler.xaml;UserController\ucAnasayfa.xaml;
 
-False
+True
 

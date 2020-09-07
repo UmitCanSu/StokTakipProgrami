@@ -5,17 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StokTakipUygulamasi.UserController"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0">
-            <DataGrid BorderBrush="{x:Null}" BorderThickness="0" Background="#FFC73A3A">
-                
-            </DataGrid>
-        </Border>
+        <Canvas Height="450" Width="800">
+            <Label x:Name="lblDolar" Content="" Canvas.Left="724" Canvas.Top="19"/>
+
+
+        </Canvas>
         <Border Background="White" Grid.Row="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <ToggleButton Style="{DynamicResource menubutonlar}" Content="Buton - 1" Width="150" Height="40"/>
@@ -23,6 +23,9 @@
                 <ToggleButton Style="{DynamicResource menubutonlar}" Content="Buton - 3" Width="150" Height="40"/>
             </StackPanel>
         </Border>
-            
+        <Label x:Name="label" Content="Dolar: " HorizontalAlignment="Left" Margin="668,20,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listbox_calisanlar" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+
+
     </Grid>
 </UserControl>

@@ -107,6 +107,7 @@ namespace StokTakipUygulamasi
 
         private void menubuton_indirimdekiler_Click(object sender, RoutedEventArgs e)
         {
+            uc_cagir.uc_Ekle(Content_Icerik, new ucIndirimdekiler());
             secimDurumu = 2;
             secilenDurum();
         }

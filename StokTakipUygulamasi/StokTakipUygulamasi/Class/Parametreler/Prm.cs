@@ -17,10 +17,13 @@ namespace StokTakipUygulamasi.Class.Parametreler
         public static string ResimAdi;
         public static string BarkodNo;
         public static string grd_UrunlerListesi;
+        public static bool checkbox_Satista_Olanlar;
         #endregion
 
 
-        #region Ekleme Parametreleri
+
+        #region Ekleme / Güncelleme Parametreleri
+        private string _ID;
         private string _urunAdi;
         private string _barkod_No;
         private string _aciklama;
@@ -29,7 +32,9 @@ namespace StokTakipUygulamasi.Class.Parametreler
         private Nullable<int> _kar_Orani;
         private Nullable<int> _satis_Fiyati;
         private Nullable<int> _olcu_Birimi_ID;
+        private string _olcu_Birimi;
         private bool _satista_Mi;
+        private Nullable<int> _olcu_miktar;
 
         // Gelen değerlerin hepsinin baş harfini büyük yaptık. (CultureInfo ile)
         public string UrunAdi { get => _urunAdi; set => _urunAdi = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value); }
@@ -41,6 +46,9 @@ namespace StokTakipUygulamasi.Class.Parametreler
         public Nullable<int> Olcu_Birimi_ID { get => _olcu_Birimi_ID; set => _olcu_Birimi_ID = value; }
         public bool Satista_Mi { get => _satista_Mi; set => _satista_Mi = value; }
         public string Resim { get => _resim; set => _resim = value; }
+        public Nullable<int> Olcu_Miktar { get => _olcu_miktar; set => _olcu_miktar = value; }
+        public string Olcu_Birimi { get => _olcu_Birimi; set => _olcu_Birimi = value; }
+        public string ID { get => _ID; set => _ID = value; }
 
         #endregion
 
