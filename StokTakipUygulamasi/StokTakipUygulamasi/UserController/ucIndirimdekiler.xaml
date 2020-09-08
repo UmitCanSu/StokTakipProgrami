@@ -31,6 +31,27 @@
 
                 <DataGrid.Columns>
 
+                    <DataGridTextColumn Binding="{Binding Path=Indirim_ID}" IsReadOnly="True" Header="ID" MaxWidth="2">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="FontSize" Value="0.1"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="#2e61af"/>
+                                <Setter Property="BorderBrush" Value="#FF134187"/>
+                                <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                                <Setter Property="Foreground" Value="White"/>
+
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+
                     <DataGridTextColumn Binding="{Binding Path=Urun_ID}" IsReadOnly="True" Header="ID" MaxWidth="2">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -99,14 +120,25 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Path=Indirimde_mi}" IsReadOnly="True" Header="İndirimde Mi" MinWidth="80" TextBlock.TextAlignment="Center" TextElement.FontStretch="Expanded">
+                    <DataGridTextColumn Binding="{Binding Path=Indiirmde_mi}" IsReadOnly="True" Header="İndirim ID" MaxWidth="2">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Left"/>
                                 <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="Padding" Value="5,0,5,0"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="FontSize" Value="0.1"/>
                             </Style>
                         </DataGridTextColumn.ElementStyle>
+
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="#2e61af"/>
+                                <Setter Property="BorderBrush" Value="#FF134187"/>
+                                <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                                <Setter Property="Foreground" Value="White"/>
+
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Path=Indirim_Taban_Fiyati}" IsReadOnly="True" Header="İndirim Taban Fiyatı" MinWidth="80" TextBlock.TextAlignment="Center" TextElement.FontStretch="Expanded">
                         <DataGridTextColumn.ElementStyle>
@@ -156,8 +188,8 @@
             <DockPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Style="{DynamicResource UrunEkleButonu}" Width="90" Height="50" Content="Güncelle"  x:Name="btnGuncelle"  Margin="10,25,0,25" Click="btnGuncelle_Click" ></Button>
-                    <Button Style="{DynamicResource UrunEkleButonu}" Width="90" Height="50" Content="Çıkar"  x:Name="btnCikar" Margin="10,25,0,25" ></Button>
-                    <CheckBox  Content="İndirim Süresi Bitenler" FontSize="16" x:Name="check_Indirimde_Olmayanlar"  VerticalAlignment="Center" Margin="20,45,0,25" Height="30" BorderThickness="5" MinWidth="27" MinHeight="30" />
+                    <Button Style="{DynamicResource UrunEkleButonu}" Width="90" Height="50" Content="Çıkar"  x:Name="btnCikar" Margin="10,25,0,25" Click="btnCikar_Click" ></Button>
+                    <CheckBox  Content="İndirim Süresi Bitenler" FontSize="16" x:Name="check_Indirimde_Olmayanlar"  VerticalAlignment="Center" Margin="20,45,0,25" Height="30" BorderThickness="5" MinWidth="27" MinHeight="30" Checked="check_Indirimde_Olmayanlar_Checked" Unchecked="check_Indirimde_Olmayanlar_Unchecked" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

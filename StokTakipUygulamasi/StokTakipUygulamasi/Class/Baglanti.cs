@@ -78,14 +78,181 @@ namespace StokTakipUygulamasi
         }
 
 
-        // Datagrid İndirimdekiler Doldurma Metodu
+        // İndirimdekiler sayfasının verilerini çekiyoruz
+        public static string[] indirimdekiler_guncelle_urun_Cek(string indirim_id)
+        {
+            string[] dizi = new string[12];
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd;
+            MySqlDataReader reader;
+            cmd = new MySqlCommand($@"Select u.Resim as 'Urun_Resmi', i.ID as 'Indirim_ID', u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati',  i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i join urunler u on i.Urunler_ID = u.ID join stok s on s.Urun_ID = u.ID where i.ID={indirim_id}", baglan);
+            try
+            {
+                baglan.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+
+                    dizi[0] = reader["Indirim_ID"].ToString();
+                    dizi[1] = reader["Urun_ID"].ToString();
+                    dizi[2] = reader["Urun_Adi"].ToString();
+                    dizi[3] = reader["Indirimsiz_Satis_Fiyati"].ToString();
+                    dizi[4] = reader["Baslangic_Tarihi"].ToString();
+                    dizi[5] = reader["Bitis_Tarihi"].ToString();
+                    dizi[6] = reader["Yuzde"].ToString();
+                    dizi[7] = reader["Indirimde_mi"].ToString();
+                    dizi[8] = reader["Indirim_Taban_Fiyati"].ToString();
+                    dizi[9] = reader["Satis_Fiyati"].ToString();
+                    dizi[10] = reader["Stok_Adedi"].ToString();
+                    dizi[11] = reader["Urun_Resmi"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.ToString()}");
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            return dizi;
+
+        }
+
+        // Ürünü indirimdekilerden Çıkar
+        public static bool indirimdekilerden_cikar(string id)
+        {
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd;
+            sbyte i = 0;
+            cmd = new MySqlCommand($@"Update indirimdekiler set Indirimde_mi='0' where id='{id}'",baglan);
+            try
+            {
+                baglan.Open();
+                cmd.ExecuteNonQuery();
+                i = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.ToString()}");
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            if (i>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
+
+        // İndirimdekiler güncelleme işlemi
+
+        public static bool IndirimdekilerGuncelle(Prm veri, string indirim_id)
+        {
+            sbyte donen = 0;
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd = new MySqlCommand($@"update indirimdekiler set Baslangic_Tarihi=@Baslangic_Tarihi, Bitis_Tarihi=@Bitis_Tarihi, Yuzde=@Yuzde, Satis_Fiyati=@Satis_Fiyati, Indirim_Taban_Fiyati=@Indirim_Taban_Fiyati, Indirimde_mi=@Indirimde_mi where ID=@IndirimID", baglan);
+            cmd.Parameters.AddWithValue("@Baslangic_Tarihi", veri.IndirimBaslangicTarihi);
+            cmd.Parameters.AddWithValue("@Bitis_Tarihi", veri.IndirimBitisTarihi);
+            cmd.Parameters.AddWithValue("@IndirimID", indirim_id);
+            cmd.Parameters.AddWithValue("@Satis_fiyati", veri.IndirimliSatisFiyati);
+            cmd.Parameters.AddWithValue("@Indirim_Taban_fiyati", veri.IndirimTabanFiyati);
+            cmd.Parameters.AddWithValue("@Indirimde_mi",veri.Indirimde_mi);
+            if (!string.IsNullOrEmpty(veri.IndirimYuzde.ToString()))  // KDV oranı null mu yoksa bir değer gelmiş mi diye bakıyoruz.
+            {
+                cmd.Parameters.AddWithValue("@Yuzde", veri.IndirimYuzde);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Yuzde", DBNull.Value);
+            }
+
+            try
+            {
+                baglan.Open();
+                donen = 1;
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            if (donen > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        // Datagrid İndirimdekiler (İndiirmde olmayanlar) Doldurma Metodu
+        public static bool Indirimde_Olmayanlar_IndirimdekilerGridiDoldur(DataGrid grd)
+        {
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd;
+            MySqlDataAdapter adapter;
+            sbyte i = 0;
+            cmd = new MySqlCommand($@"Select i.ID as 'Indirim_ID', u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati',  i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i join urunler u on i.Urunler_ID = u.ID join stok s on s.Urun_ID = u.ID where i.Indirimde_mi = 0", baglan);
+            baglan.Open();
+            try
+            {
+                adapter = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                grd.ItemsSource = null;
+                grd.ItemsSource = dt.DefaultView;
+                i = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.ToString()}");
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            if (i > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
+
+
+        // Datagrid İndirimdekiler (İndiirmde olanlar) Doldurma Metodu
         public static bool Indirimde_Olanlar_IndirimdekilerGridiDoldur(DataGrid grd)
         {
             MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
             MySqlCommand cmd;
             MySqlDataAdapter adapter;
             sbyte i = 0;
-            cmd = new MySqlCommand($@"Select u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati', i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i join urunler u on i.Urunler_ID = u.ID join stok s on s.Urun_ID = u.ID where i.Indirimde_mi = 1 ", baglan);
+            cmd = new MySqlCommand($@"Select i.ID as 'Indirim_ID', u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati',  i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i join urunler u on i.Urunler_ID = u.ID join stok s on s.Urun_ID = u.ID where i.Indirimde_mi = 1", baglan);
             baglan.Open();
             try
             {
@@ -290,8 +457,9 @@ namespace StokTakipUygulamasi
             return donen;
         }
 
-    // Güncelleme İşlemi
 
+
+    // Güncelleme İşlemi
         public static bool UrunuGuncelle(Prm veri, string id)
         {
             sbyte donen = 0;
@@ -492,6 +660,44 @@ namespace StokTakipUygulamasi
             }
 
             if (donen > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
+        public static bool calisanlari_cek(DataGrid grd)
+        {
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd;
+            MySqlDataAdapter adapter;
+            sbyte i = 0;
+            cmd = new MySqlCommand($@"Select * from calisanlar", baglan);
+            baglan.Open();
+            try
+            {
+                adapter = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                grd.ItemsSource = null;
+                grd.ItemsSource = dt.DefaultView;
+                i = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.ToString()}");
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            if (i > 0)
             {
                 return true;
             }

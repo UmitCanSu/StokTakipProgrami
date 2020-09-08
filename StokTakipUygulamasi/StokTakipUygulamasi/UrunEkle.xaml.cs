@@ -68,19 +68,6 @@ namespace StokTakipUygulamasi
         {
 
             Bonus.PopupShow(popup_bilgi);
-            /*
-             * Elle açıp kapatmak için
-            if (popupAcikMi)
-            {
-                popup_bilgi.IsOpen = true;
-                popupAcikMi = false;
-            }
-            else
-            {
-                popup_bilgi.IsOpen = false;
-                popupAcikMi = true;
-            }
-            */
             
         }
         

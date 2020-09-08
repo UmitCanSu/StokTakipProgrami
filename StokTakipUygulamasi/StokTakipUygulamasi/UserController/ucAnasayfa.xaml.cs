@@ -28,7 +28,7 @@ namespace StokTakipUygulamasi.UserController
         public ucAnasayfa()
         {
             InitializeComponent();
-            
+            Baglanti.calisanlari_cek(dtg_calisanlar);
         }
 
 

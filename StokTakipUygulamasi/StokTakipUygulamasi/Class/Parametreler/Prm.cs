@@ -18,12 +18,13 @@ namespace StokTakipUygulamasi.Class.Parametreler
         public static string BarkodNo;
         public static string grd_UrunlerListesi;
         public static bool checkbox_Satista_Olanlar;
+        public static bool checkbox_indirimde_olmayanlar;
         #endregion
 
 
 
         #region Ekleme / Güncelleme Parametreleri
-        private string _ID;
+        private string _ID;  // Ürün Id olarak kullanıyoruz.
         private string _urunAdi;
         private string _barkod_No;
         private string _aciklama;
@@ -35,6 +36,15 @@ namespace StokTakipUygulamasi.Class.Parametreler
         private string _olcu_Birimi;
         private bool _satista_Mi;
         private Nullable<int> _olcu_miktar;
+
+        // İndirim parametreleri
+        private string _indirim_ID;
+        private DateTime _IndirimBaslangicTarihi;
+        private DateTime _IndirimBitisTarihi;
+        private Nullable<int> _indirimYuzde;
+        private int _indirimliSatisFiyati;
+        private int _indirimTabanFiyati;
+        private bool _indirimde_mi;
 
         // Gelen değerlerin hepsinin baş harfini büyük yaptık. (CultureInfo ile)
         public string UrunAdi { get => _urunAdi; set => _urunAdi = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value); }
@@ -49,6 +59,13 @@ namespace StokTakipUygulamasi.Class.Parametreler
         public Nullable<int> Olcu_Miktar { get => _olcu_miktar; set => _olcu_miktar = value; }
         public string Olcu_Birimi { get => _olcu_Birimi; set => _olcu_Birimi = value; }
         public string ID { get => _ID; set => _ID = value; }
+        public string Indirim_ID { get => _indirim_ID; set => _indirim_ID = value; }
+        public DateTime IndirimBaslangicTarihi { get => _IndirimBaslangicTarihi; set => _IndirimBaslangicTarihi = value; }
+        public DateTime IndirimBitisTarihi { get => _IndirimBitisTarihi; set => _IndirimBitisTarihi = value; }
+        public int IndirimliSatisFiyati { get => _indirimliSatisFiyati; set => _indirimliSatisFiyati = value; }
+        public int IndirimTabanFiyati { get => _indirimTabanFiyati; set => _indirimTabanFiyati = value; }
+        public int? IndirimYuzde { get => _indirimYuzde; set => _indirimYuzde = value; }
+        public bool Indirimde_mi { get => _indirimde_mi; set => _indirimde_mi = value; }
 
         #endregion
 
