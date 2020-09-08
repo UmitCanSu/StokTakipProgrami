@@ -56,3 +56,5 @@ C:\Users\semih\OneDrive\Masaüstü\StokTakipUygulamasi\StokTakipUygulamasi\obj\D
 C:\Users\semih\OneDrive\Masaüstü\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\UserController\ucIndirimdekiler.baml
 C:\Users\semih\OneDrive\Masaüstü\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\IndirimdekilerGuncelle.g.cs
 C:\Users\semih\OneDrive\Masaüstü\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\IndirimdekilerGuncelle.baml
+C:\Users\semih\OneDrive\Masaüstü\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\IndirimdekilereEkle.g.cs
+C:\Users\semih\OneDrive\Masaüstü\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\IndirimdekilereEkle.baml

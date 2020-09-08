@@ -109,6 +109,9 @@
     <Compile Include="Class\Bonus.cs" />
     <Compile Include="Class\Parametreler\Prm.cs" />
     <Compile Include="Class\uc_cagir.cs" />
+    <Compile Include="IndirimdekilereEkle.xaml.cs">
+      <DependentUpon>IndirimdekilereEkle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IndirimdekilerGuncelle.xaml.cs">
       <DependentUpon>IndirimdekilerGuncelle.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BilgiEkrani.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IndirimdekilereEkle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

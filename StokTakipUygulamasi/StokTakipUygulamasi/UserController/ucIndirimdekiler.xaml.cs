@@ -94,6 +94,12 @@ namespace StokTakipUygulamasi.UserController
         
         }
 
+        private void btnIndirimliUrunEkle_Click(object sender, RoutedEventArgs e)
+        {
+            IndirimdekilereEkle ie = new IndirimdekilereEkle(dtg_IndirimdekilerListesi);
+            ie.ShowDialog();
+        }
+
         private void btnGuncelle_Click(object sender, RoutedEventArgs e)
         {
             if (dtg_IndirimdekilerListesi.SelectedItem == null)

@@ -252,7 +252,7 @@ namespace StokTakipUygulamasi
             MySqlCommand cmd;
             MySqlDataAdapter adapter;
             sbyte i = 0;
-            cmd = new MySqlCommand($@"Select i.ID as 'Indirim_ID', u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati',  i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i join urunler u on i.Urunler_ID = u.ID join stok s on s.Urun_ID = u.ID where i.Indirimde_mi = 1", baglan);
+            cmd = new MySqlCommand($@"Select i.ID as 'Indirim_ID', u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati',  i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i left join urunler u on i.Urunler_ID = u.ID left join stok s on s.Urun_ID = u.ID where i.Indirimde_mi = 1", baglan);
             baglan.Open();
             try
             {
@@ -325,6 +325,7 @@ namespace StokTakipUygulamasi
         }
 
 
+        // Ürünü silme fonksiyonu
         public static bool UrunSil(string gelen_id)
         {
             sbyte donen = 0;
@@ -356,6 +357,8 @@ namespace StokTakipUygulamasi
 
         }
 
+
+        // Tüm ölçü birimlerini çekme fonksiyonu
         public static ComboBox OlcuBirimleri(ComboBox cmb)
         {
             MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
@@ -384,10 +387,80 @@ namespace StokTakipUygulamasi
         }
 
 
-   
+
+        // Combobox'a ürünleri doldurma ve ID ve Ürün Adı çekme fonksiyonu
+        public static string[] tumUrunleriCek(ComboBox cmb)
+        {
+            string[] dizi = new string[11];
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd;
+            MySqlDataReader reader;
+            cmd = new MySqlCommand($@"select u.ID, u.Urun_Adi, u.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from urunler u left join stok s on u.ID = s.Urun_ID;", baglan);
+            try
+            {
+                baglan.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    cmb.Items.Add(reader["Urun_Adi"]);
+                    dizi[0] = reader["ID"].ToString();
+                    dizi[1] = reader["Urun_Adi"].ToString();
+                    dizi[2] = reader["Satis_Fiyati"].ToString();
+                    dizi[3] = reader["Stok_Adedi"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.ToString()}");
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            return dizi;
+
+        }
 
 
+        // Ürün Adı ile ürünün bilgilerini çekme fonksiyonu (Stok adedi vs dahil)
+        public static string[] isimleUrunBilgileriCek(string urun_Adi)
+        {
+            string[] dizi = new string[6];
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd;
+            MySqlDataReader reader;
+            cmd = new MySqlCommand($@"select u.ID, s.Eldeki_Miktar as 'Stok_Adedi', u.Urun_Adi,u.Satis_Fiyati, u.Resim, ob.ID as 'Olcu_Birimi_ID'
+                                    from urunler u left join  stok s on s.Urun_ID = u.ID left join olcu_birimi ob on ob.ID = u.Olcu_Birimi_ID where u.Urun_Adi='{urun_Adi}'", baglan);
+            try
+            {
+                baglan.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
 
+                    dizi[0] = reader["ID"].ToString();
+                    dizi[1] = reader["Urun_Adi"].ToString();
+                    dizi[2] = reader["Satis_Fiyati"].ToString();
+                    dizi[3] = reader["Resim"].ToString();
+                    dizi[4] = reader["Stok_Adedi"].ToString();
+                    dizi[5] = reader["Olcu_Birimi_ID"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.ToString()}");
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            return dizi;
+
+        }
+
+        // ID ile Ürün bilgilerini çekme fonksiyonu
         public static string[] urunCek(string id)
         {
             string[] dizi = new string[11];
@@ -430,6 +503,7 @@ namespace StokTakipUygulamasi
         }
 
 
+        // Ölçü biriminin ID'sini bulma fonksiyonu
         public static int Olcu_Birimi_ID_Bul(string olcu_birimi_adi)
         {
             int donen = 0;
@@ -567,8 +641,58 @@ namespace StokTakipUygulamasi
             }
         }
 
+        // İndirimdekilere Ürün Ekleme Fonksiyonu
+        public static bool IndirimlereEkle(Prm veri)
+        {
+            sbyte donen = 0;
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd = new MySqlCommand("insert into indirimdekiler (Baslangic_Tarihi,Bitis_Tarihi,Yuzde,Satis_Fiyati,Indirimde_mi,Urunler_ID,Urunler_Olcu_Birimi_ID,Indirim_Taban_Fiyati) values (@BaslangicTarihi,@BitisTarihi,@Yuzde,@SatisFiyati,@IndirimdeMi,@UrunID,@OlcuBirimiID,@IndirimTabanFiyati)", baglan);
+            cmd.Parameters.AddWithValue("@BaslangicTarihi",veri.IndirimBaslangicTarihi);
+            cmd.Parameters.AddWithValue("@BitisTarihi",veri.IndirimBitisTarihi);
+            cmd.Parameters.AddWithValue("@SatisFiyati",veri.IndirimliSatisFiyati);
+            cmd.Parameters.AddWithValue("@IndirimdeMi",veri.Indirimde_mi);
+            cmd.Parameters.AddWithValue("@OlcuBirimiID",veri.Olcu_Birimi_ID);
+            cmd.Parameters.AddWithValue("@IndirimTabanFiyati",veri.IndirimTabanFiyati);
+            cmd.Parameters.AddWithValue("@UrunID",veri.ID);
+            if (!string.IsNullOrEmpty(veri.IndirimYuzde.ToString()))
+            {
+                cmd.Parameters.AddWithValue("@Yuzde",veri.IndirimYuzde);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Yuzde",DBNull.Value);
+            }
 
-    // Ekleme işlemi
+
+            try
+            {
+                baglan.Open();
+                donen = 1;
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            if (donen > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
+    // Ürün Ekleme işlemi
     public static bool EklemeIslemi(Prm veri)
         {
             sbyte donen = 0;
@@ -671,6 +795,8 @@ namespace StokTakipUygulamasi
         }
 
 
+
+        // Çalışanları çekme fonksiyonu
         public static bool calisanlari_cek(DataGrid grd)
         {
             MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
