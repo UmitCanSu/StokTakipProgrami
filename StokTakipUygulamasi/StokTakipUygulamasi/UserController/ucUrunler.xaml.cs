@@ -48,36 +48,43 @@ namespace StokTakipUygulamasi.UserController
 
         private void btnSil_Click(object sender, RoutedEventArgs e)
         {
-
-            id = ((TextBlock)dtg_UrunlerListesi.Columns[0].GetCellContent(dtg_UrunlerListesi.SelectedItem)).Text;
-            ad = ((TextBlock)dtg_UrunlerListesi.Columns[1].GetCellContent(dtg_UrunlerListesi.SelectedItem)).Text;
-            MessageBoxResult result = MessageBox.Show($"{ad} isimli ürünü silmek istediğinize emin misiniz?","EVET/HAYIR",MessageBoxButton.YesNo,MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
+            if (dtg_UrunlerListesi.SelectedItem == null)
             {
-                if (Baglanti.UrunSil(id))
+                MessageBox.Show("Lütfen Bir ürün seçiniz");
+            }
+            else
+            {
+                id = ((TextBlock)dtg_UrunlerListesi.Columns[0].GetCellContent(dtg_UrunlerListesi.SelectedItem)).Text;
+                ad = ((TextBlock)dtg_UrunlerListesi.Columns[1].GetCellContent(dtg_UrunlerListesi.SelectedItem)).Text;
+                MessageBoxResult result = MessageBox.Show($"{ad} isimli ürünü silmek istediğinize emin misiniz?", "EVET/HAYIR", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 {
-                    if (Prm.checkbox_Satista_Olanlar == false)
+                    if (Baglanti.UrunSil(id))
                     {
-                        Baglanti.SatistaOlmayanlar_GridiDoldur(dtg_UrunlerListesi);
+                        if (Prm.checkbox_Satista_Olanlar == false)
+                        {
+                            Baglanti.SatistaOlmayanlar_GridiDoldur(dtg_UrunlerListesi);
+                        }
+                        else
+                        {
+                            Baglanti.GridiDoldur(dtg_UrunlerListesi);
+                        }
+                        Prm.Hata = 0;
+                        Prm.BilgiMesajiAlani = "Ürün Başarıyla Silindi...";
+                        BilgiEkrani be = new BilgiEkrani();
+                        be.Show();
                     }
                     else
                     {
-                        Baglanti.GridiDoldur(dtg_UrunlerListesi);
+                        Prm.Hata = 1;
+                        Prm.BilgiMesajiAlani = "Ürün Silinirken Bir Hata Oldu!";
+                        BilgiEkrani be = new BilgiEkrani();
+                        be.Show();
                     }
-                    Prm.Hata = 0;
-                    Prm.BilgiMesajiAlani = "Ürün Başarıyla Silindi...";
-                    BilgiEkrani be = new BilgiEkrani();
-                    be.Show();
-                }
-                else
-                {
-                    Prm.Hata = 1;
-                    Prm.BilgiMesajiAlani = "Ürün Silinirken Bir Hata Oldu!";
-                    BilgiEkrani be = new BilgiEkrani();
-                    be.Show();
                 }
             }
-            //MessageBox.Show($"Seçilen Ürünün ID'si: {id}\n Ürünün Adı: {ad}");
+
+
         }
 
         bool satista_olanlar = false;

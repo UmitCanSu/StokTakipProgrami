@@ -54,34 +54,42 @@ namespace StokTakipUygulamasi.UserController
 
         private void btnCikar_Click(object sender, RoutedEventArgs e)
         {
-            id = ((TextBlock)dtg_IndirimdekilerListesi.Columns[0].GetCellContent(dtg_IndirimdekilerListesi.SelectedItem)).Text;
-            urun_adi = ((TextBlock)dtg_IndirimdekilerListesi.Columns[2].GetCellContent(dtg_IndirimdekilerListesi.SelectedItem)).Text;
-            MessageBoxResult result = MessageBox.Show($"{urun_adi} isimli ürünü indirimden çıkarmak istediğinize emin misiniz?","EVET/HAYIR",MessageBoxButton.YesNo,MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
+            if (dtg_IndirimdekilerListesi.SelectedItem == null)
             {
-                if (Baglanti.indirimdekilerden_cikar(id))
+                MessageBox.Show("Lütfen Bir ürün seçiniz");
+            }
+            else
+            {
+                id = ((TextBlock)dtg_IndirimdekilerListesi.Columns[0].GetCellContent(dtg_IndirimdekilerListesi.SelectedItem)).Text;
+                urun_adi = ((TextBlock)dtg_IndirimdekilerListesi.Columns[2].GetCellContent(dtg_IndirimdekilerListesi.SelectedItem)).Text;
+                MessageBoxResult result = MessageBox.Show($"{urun_adi} isimli ürünü indirimden çıkarmak istediğinize emin misiniz?", "EVET/HAYIR", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 {
-                    if (Prm.checkbox_indirimde_olmayanlar)
+                    if (Baglanti.indirimdekilerden_cikar(id))
                     {
-                        Baglanti.Indirimde_Olmayanlar_IndirimdekilerGridiDoldur(dtg_IndirimdekilerListesi);
+                        if (Prm.checkbox_indirimde_olmayanlar)
+                        {
+                            Baglanti.Indirimde_Olmayanlar_IndirimdekilerGridiDoldur(dtg_IndirimdekilerListesi);
+                        }
+                        else
+                        {
+                            Baglanti.Indirimde_Olanlar_IndirimdekilerGridiDoldur(dtg_IndirimdekilerListesi);
+                        }
+                        Prm.Hata = 0;
+                        Prm.BilgiMesajiAlani = "Ürün indirimdekilerden çıkarıldı";
+                        BilgiEkrani be = new BilgiEkrani();
+                        be.Show();
                     }
                     else
                     {
-                        Baglanti.Indirimde_Olanlar_IndirimdekilerGridiDoldur(dtg_IndirimdekilerListesi);
+                        Prm.Hata = 1;
+                        Prm.BilgiMesajiAlani = "Ürün indirimdekilerden çıkarılırken bir hata oldu!";
+                        BilgiEkrani be = new BilgiEkrani();
+                        be.Show();
                     }
-                    Prm.Hata = 0;
-                    Prm.BilgiMesajiAlani = "Ürün indirimdekilerden çıkarıldı";
-                    BilgiEkrani be = new BilgiEkrani();
-                    be.Show();
-                }
-                else
-                {
-                    Prm.Hata = 1;
-                    Prm.BilgiMesajiAlani = "Ürün indirimdekilerden çıkarılırken bir hata oldu!";
-                    BilgiEkrani be = new BilgiEkrani();
-                    be.Show();
                 }
             }
+            
             
         
         }

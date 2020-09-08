@@ -131,6 +131,7 @@ namespace StokTakipUygulamasi
                     Prm.BilgiMesajiAlani = "Ürün başarıyla eklendi...";
                     BilgiEkrani be = new BilgiEkrani();
                     be.Show();
+                    this.Close();
                 }
                 else
                 {

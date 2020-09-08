@@ -259,6 +259,7 @@ namespace StokTakipUygulamasi
                     Prm.BilgiMesajiAlani = "Ürün başarıyla güncellendi...";
                     BilgiEkrani be = new BilgiEkrani();
                     be.Show();
+                    this.Close();
                 }
                 else
                 {
