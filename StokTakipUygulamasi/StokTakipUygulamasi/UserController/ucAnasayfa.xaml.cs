@@ -78,12 +78,30 @@ namespace StokTakipUygulamasi.UserController
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+                
+            if (InternetKonrol())
+            {
                 DispatcherTimer dispatcherTimer = new DispatcherTimer();
                 dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
                 dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
                 dispatcherTimer.Start();
+            }
+
             
             
+        }
+        public bool InternetKonrol()
+        {
+            try
+            {
+                System.Net.Sockets.TcpClient Kontrol = new System.Net.Sockets.TcpClient("wwww.google.com.tr", 80);
+                Kontrol.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

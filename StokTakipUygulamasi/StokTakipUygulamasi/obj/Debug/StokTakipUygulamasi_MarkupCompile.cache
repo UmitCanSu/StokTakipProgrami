@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\semih\OneDrive\Masaüstü\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\
+C:\Users\UmitCanSU\Documents\GitHub\StokTakipProgrami\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\
 StokTakipUygulamasi
 none
 false
 DEBUG;TRACE
-C:\Users\semih\OneDrive\Masaüstü\StokTakipUygulamasi\StokTakipUygulamasi\App.xaml
+C:\Users\UmitCanSU\Documents\GitHub\StokTakipProgrami\StokTakipUygulamasi\StokTakipUygulamasi\App.xaml
 11-995367318
 1-326207090
 191075238732
-83-1662466199
+83805492977
 Anasayfa.xaml;BilgiEkrani.xaml;IndirimdekilereEkle.xaml;IndirimdekilerGuncelle.xaml;mainwindow.xaml;UrunEkle.xaml;UrunGuncelle.xaml;UserController\SatisYap.xaml;UserController\ucIndirimdekiler.xaml;UserController\ucUrunler.xaml;UserController\ucAnasayfa.xaml;
 
 False
