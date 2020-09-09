@@ -85,7 +85,7 @@ namespace StokTakipUygulamasi
             MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
             MySqlCommand cmd;
             MySqlDataReader reader;
-            cmd = new MySqlCommand($@"Select u.Resim as 'Urun_Resmi', i.ID as 'Indirim_ID', u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati',  i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i join urunler u on i.Urunler_ID = u.ID join stok s on s.Urun_ID = u.ID where i.ID={indirim_id}", baglan);
+            cmd = new MySqlCommand($@"Select u.Resim as 'Urun_Resmi', i.ID as 'Indirim_ID', u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati',  i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i left join urunler u on i.Urunler_ID = u.ID left join stok s on s.Urun_ID = u.ID where i.ID={indirim_id}", baglan);
             try
             {
                 baglan.Open();
@@ -211,7 +211,7 @@ namespace StokTakipUygulamasi
             MySqlCommand cmd;
             MySqlDataAdapter adapter;
             sbyte i = 0;
-            cmd = new MySqlCommand($@"Select i.ID as 'Indirim_ID', u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati',  i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i join urunler u on i.Urunler_ID = u.ID join stok s on s.Urun_ID = u.ID where i.Indirimde_mi = 0", baglan);
+            cmd = new MySqlCommand($@"Select i.ID as 'Indirim_ID', u.ID as 'Urun_ID',u.Urun_Adi,u.Satis_Fiyati as 'Indirimsiz_Satis_Fiyati',  i.Baslangic_Tarihi, i.Bitis_Tarihi, i.Yuzde, i.Indirimde_mi, i.Indirim_Taban_Fiyati, i.Satis_Fiyati, s.Eldeki_Miktar as 'Stok_Adedi' from indirimdekiler i left join urunler u on i.Urunler_ID = u.ID left join stok s on s.Urun_ID = u.ID where i.Indirimde_mi = 0", baglan);
             baglan.Open();
             try
             {

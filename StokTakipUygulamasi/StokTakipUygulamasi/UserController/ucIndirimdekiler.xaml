@@ -20,7 +20,7 @@
                       Foreground="#FF042263" IsReadOnly="True" RowHeight="30" CanUserAddRows="False" CanUserSortColumns="True" 
                       CanUserReorderColumns="False" CanUserResizeRows="False"
                       HorizontalGridLinesBrush="#FF989B9B" VerticalGridLinesBrush="#FFBBBBBB" HeadersVisibility="Column" 
-                      AutoGenerateColumns="False" Style="{DynamicResource DataGridStyle}">
+                      AutoGenerateColumns="False" Style="{DynamicResource DataGridStyle}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <!--
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridRow}">
