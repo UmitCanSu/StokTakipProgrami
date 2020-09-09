@@ -115,6 +115,9 @@
     <Compile Include="IndirimdekilerGuncelle.xaml.cs">
       <DependentUpon>IndirimdekilerGuncelle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SiparisUrunEkle.xaml.cs">
+      <DependentUpon>SiparisUrunEkle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UrunEkle.xaml.cs">
       <DependentUpon>UrunEkle.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,9 @@
     </Compile>
     <Compile Include="UserController\ucIndirimdekiler.xaml.cs">
       <DependentUpon>ucIndirimdekiler.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserController\ucSiparisler.xaml.cs">
+      <DependentUpon>ucSiparisler.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserController\ucUrunler.xaml.cs">
       <DependentUpon>ucUrunler.xaml</DependentUpon>
@@ -161,6 +167,10 @@
       <DependentUpon>mainwindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SiparisUrunEkle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UrunEkle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserController\ucIndirimdekiler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserController\ucSiparisler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -175,7 +175,7 @@ namespace StokTakipUygulamasi
                 }
                 else
                 {
-                    veri.IndirimliSatisFiyati = Convert.ToInt32(txtIndirimliFiyat.Text);
+                    veri.IndirimliSatisFiyati = Convert.ToInt32(float.Parse(txtIndirimliFiyat.Text.ToString()));
                 }
                 if (dateBaslangic.SelectedDate > dateBitis.SelectedDate)
                 {

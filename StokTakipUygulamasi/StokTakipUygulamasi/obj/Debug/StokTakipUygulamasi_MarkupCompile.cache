@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\UmitCanSU\Documents\GitHub\StokTakipProgrami\StokTakipUygulamasi\StokTakipUygulamasi\App.xaml
-11-995367318
+13-1496154385
 1-326207090
-191075238732
+2162163227
 83805492977
-Anasayfa.xaml;BilgiEkrani.xaml;IndirimdekilereEkle.xaml;IndirimdekilerGuncelle.xaml;mainwindow.xaml;UrunEkle.xaml;UrunGuncelle.xaml;UserController\SatisYap.xaml;UserController\ucIndirimdekiler.xaml;UserController\ucUrunler.xaml;UserController\ucAnasayfa.xaml;
+Anasayfa.xaml;BilgiEkrani.xaml;IndirimdekilereEkle.xaml;IndirimdekilerGuncelle.xaml;mainwindow.xaml;SiparisUrunEkle.xaml;UrunEkle.xaml;UrunGuncelle.xaml;UserController\SatisYap.xaml;UserController\ucIndirimdekiler.xaml;UserController\ucSiparisler.xaml;UserController\ucUrunler.xaml;UserController\ucAnasayfa.xaml;
 
 False
 

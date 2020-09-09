@@ -121,6 +121,7 @@ namespace StokTakipUygulamasi
 
         private void menubuton_siparisler_Click(object sender, RoutedEventArgs e)
         {
+            uc_cagir.uc_Ekle(Content_Icerik, new ucSiparisler());
             secimDurumu = 4;
             secilenDurum();
         }
