@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using MySql.Data.MySqlClient;
 
 namespace StokTakipUygulamasi.UserController
 {
@@ -86,10 +88,11 @@ namespace StokTakipUygulamasi.UserController
                 dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
                 dispatcherTimer.Start();
             }
-
-            
-            
         }
+
+
+    
+
         public bool InternetKonrol()
         {
             try
