@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using StokTakipUygulamasi.Class.Parametreler;
 
 namespace StokTakipUygulamasi
 {
@@ -19,9 +20,17 @@ namespace StokTakipUygulamasi
     /// </summary>
     public partial class SiparisGuncelle : Window
     {
-        public SiparisGuncelle()
+        DataGrid grid;
+        int Siparis_ID;
+        Prm veri;
+        public SiparisGuncelle(DataGrid grid, int Siparis_ID )
         {
+         
+            this.grid = grid;
+            this.Siparis_ID = Siparis_ID;
             InitializeComponent();
+            String[] cek = Baglanti.SiparisCek(Siparis_ID);
+           
         }
 
         private void UrunAdiComBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -41,7 +50,7 @@ namespace StokTakipUygulamasi
 
         private void btnUrunGuncelleSiparis(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void txtSiparisAdeti_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -52,6 +61,11 @@ namespace StokTakipUygulamasi
         private void btnKapatSiparis(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtSiparisAdeti.Text = Siparis_ID.ToString();
         }
     }
 }

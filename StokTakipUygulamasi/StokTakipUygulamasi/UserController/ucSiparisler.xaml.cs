@@ -27,7 +27,7 @@ namespace StokTakipUygulamasi.UserController
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            String sorgu = $@"Select u.Urun_Adi,o.Olcu_Birimi, u.Olcu_Miktar,s.Adet, s.Siparis_Tarihi, t.Toptanci_Adi, c.Ad,c.Soyad 
+            String sorgu = $@"Select s.ID, u.Urun_Adi,o.Olcu_Birimi, u.Olcu_Miktar,s.Adet, s.Siparis_Tarihi, t.Toptanci_Adi, c.Ad,c.Soyad 
                             from urun_siparis s 
                             join olcu_birimi o on s.Urun_Olcu_Birimi_ID = o.ID 
                             join urunler u on u.ID= s.Urun_ID
@@ -48,9 +48,11 @@ namespace StokTakipUygulamasi.UserController
 
         private void btnGuncelleClick(object sender, RoutedEventArgs e)
         {
-            SiparisGuncelle siparisGünceller = new SiparisGuncelle();
+            int id = Convert.ToInt32(((TextBlock)dtg_SiparisListesi.Columns[0].GetCellContent(dtg_SiparisListesi.SelectedItem)).Text);
+            SiparisGuncelle siparisGünceller = new SiparisGuncelle(dtg_SiparisListesi,id);
             siparisGünceller.Owner = gk;
             siparisGünceller.ShowDialog();
+            
         }
     }
 }

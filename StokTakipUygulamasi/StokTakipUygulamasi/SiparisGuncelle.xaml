@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:StokTakipUygulamasi"
         mc:Ignorable="d"
        Title="UrunEkle" Height="400" Width="900" AllowsTransparency="True" WindowStyle="None" 
-        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="{x:Null}">
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="{x:Null}" Loaded="Window_Loaded">
     <Grid>
 
         <Canvas>

@@ -634,6 +634,50 @@ namespace StokTakipUygulamasi
         }
 
 
+        // ID ile Ürün bilgilerini çekme fonksiyonu
+        public static string[] SiparisCek(int id)
+        {
+            string[] dizi = new string[7];
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd;
+            MySqlDataReader reader;
+            cmd = new MySqlCommand($@"Select s.ID, u.Urun_Adi,o.Olcu_Birimi, u.Olcu_Miktar,s.Adet, s.Siparis_Tarihi, t.Toptanci_Adi, c.Ad,c.Soyad 
+                            from urun_siparis s 
+                            join olcu_birimi o on s.Urun_Olcu_Birimi_ID = o.ID 
+                            join urunler u on u.ID= s.Urun_ID
+                            join toptancilar t on t.ID = s.Toptanci_ID 
+                            join calisanlar c on c.ID = s.Calisan_ID where s.ID =3", baglan);
+            try
+            {
+                baglan.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    
+                    dizi[0] = reader["ID"].ToString();
+                    dizi[1] = reader["Adet"].ToString();
+                    dizi[2] = reader["Siparis_Tarihi"].ToString();
+                    dizi[3] = reader["Urun_ID"].ToString();
+                    dizi[4] = reader["Urun_Olcu_Birimi_ID"].ToString();
+                    dizi[5] = reader["Toptanci_ID"].ToString();
+                    dizi[6] = reader["Calisan_ID"].ToString();
+               
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.ToString()}");
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            return dizi;
+
+        }
+
+
         // Ölçü biriminin ID'sini bulma fonksiyonu
         public static int Olcu_Birimi_ID_Bul(string olcu_birimi_adi)
         {

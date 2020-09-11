@@ -46,6 +46,16 @@
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
 
+                    <DataGridTextColumn Binding="{Binding Path=ID}" IsReadOnly="True" Header="ID" MaxWidth="2">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="FontSize" Value="0.1"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Path=Urun_Adi}" IsReadOnly="True" Header="Ürün Adı" MinWidth="80" TextBlock.TextAlignment="Center" TextElement.FontStretch="Expanded">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
