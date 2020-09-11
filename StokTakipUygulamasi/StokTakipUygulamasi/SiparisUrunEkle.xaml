@@ -12,7 +12,7 @@
         <Canvas>
             <Image Source="images/icons/urunEkle.png" Canvas.Left="90" Height="58" Canvas.Top="41" Width="54" Panel.ZIndex="3" ></Image>
 
-            <Label Content="İNDİRİM ÜRÜN EKLEME PENCERESİ" FontWeight="Bold" FontSize="18" Canvas.Left="173" Canvas.Top="23" Panel.ZIndex="3" Foreground="#FFF6EDED" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource Label_yanip_sonme_efekti}"/>
+            <Label Content="SİPARİSLERE ÜRÜN EKLEME PENCERESİ" FontWeight="Bold" FontSize="18" Canvas.Left="173" Canvas.Top="23" Panel.ZIndex="3" Foreground="#FFF6EDED" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource Label_yanip_sonme_efekti}"/>
 
             <Rectangle Height="35" Width="711" Canvas.Left="103" Canvas.Top="23" Fill="#FF134187" Panel.ZIndex="1"/>
             <Ellipse Height="118" Width="115" Canvas.Left="58" Canvas.Top="10" Panel.ZIndex="2" StrokeThickness="4" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource donme_efekti}">
@@ -49,15 +49,20 @@
             <Label Content="Ölçü Birimi:" Canvas.Left="200" Canvas.Top="96" FontWeight="Bold" />
             <TextBox Width="150" Canvas.Left="285" Canvas.Top="96" Height="25" x:Name="txtOlcuBirimi" IsEnabled="False" FontSize="18" Style="{DynamicResource MouseOverImageChange_Textbox}"/>
 
-            <Label Content="Stok Adeti:" Canvas.Left="200" Canvas.Top="126" FontWeight="Bold"/>
-            <TextBox Width="150" Height="25" Canvas.Left="285" Canvas.Top="126" x:Name="txtStokAdeti" IsEnabled="False" FontSize="18" Style="{DynamicResource MouseOverImageChange_Textbox}" />
+            <Label Content="Ölçü Miktarı:" Canvas.Left="200" Canvas.Top="126" FontWeight="Bold"/>
+            <ComboBox x:Name="OlcüMiktariComboox" Width="150" Height="25" Canvas.Left="285" Canvas.Top="126" SelectionChanged="OlcuMiktariComboox_SelectionChanged"></ComboBox>
+            
+            <Label Content="Stok Adeti:" Canvas.Left="200" Canvas.Top="156" FontWeight="Bold"/>
+            <TextBox Width="150" Height="25" Canvas.Left="285" Canvas.Top="156" x:Name="txtStokAdeti" IsEnabled="False" FontSize="18" Style="{DynamicResource MouseOverImageChange_Textbox}" />
 
-            <Label Content="Sipariş Adet:" Canvas.Left="200" Canvas.Top="156" FontWeight="Bold"/>
-            <TextBox Width="150" Height="26" Canvas.Left="285" Canvas.Top="156" x:Name="txtSiparisAdeti" FontSize="18"    Style="{DynamicResource MouseOverImageChange_Textbox}" PreviewTextInput="txtSiparisAdeti_PreviewTextInput"  />
+            <Label Content="Sipariş Adet:" Canvas.Left="200" Canvas.Top="186" FontWeight="Bold"/>
+            <TextBox Width="150" Height="26" Canvas.Left="285" Canvas.Top="186" x:Name="txtSiparisAdeti" FontSize="18"    Style="{DynamicResource MouseOverImageChange_Textbox}" PreviewTextInput="txtSiparisAdeti_PreviewTextInput"  />
 
-            <Label Content="Siparis Tarihi:" Canvas.Left="200" Canvas.Top="186" FontWeight="Bold"/>
-            <DatePicker Width="150" Height="30" Canvas.Left="285" Canvas.Top="186" x:Name="txtSiparisTarihi" FontSize="18" />
+            <Label Content="Siparis Tarihi:" Canvas.Left="200" Canvas.Top="216" FontWeight="Bold"/>
+            <DatePicker Width="150" Height="30" Canvas.Left="285" Canvas.Top="216" x:Name="dateSiparisTarihi" FontSize="18" />
 
+            <Label Content="Toptancı Adı:" Canvas.Left="200" Canvas.Top="246" FontWeight="Bold"/>
+            <ComboBox x:Name="ToptancıAdiComBox" Width="150" Height="25" Canvas.Left="285" Canvas.Top="251" SelectionChanged="TotanciAdiComBox_SelectionChanged"></ComboBox>
 
 
             <Button Panel.ZIndex="3" Style="{DynamicResource DaireButon}" Canvas.Left="557" Canvas.Top="220"  x:Name="btnResimEkle"/>

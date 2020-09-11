@@ -75,6 +75,17 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
+
+                    <DataGridTextColumn Binding="{Binding Path=Olcu_Miktar}" IsReadOnly="True" Header="Ölçü Miktarı" MinWidth="80" TextBlock.TextAlignment="Center" TextElement.FontStretch="Expanded">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="5,0,5,0"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
                     <DataGridTextColumn Binding="{Binding Path=Adet}" IsReadOnly="True" Header="Adet" MinWidth="80" TextBlock.TextAlignment="Center" TextElement.FontStretch="Expanded">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -102,7 +113,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Path=Ad}" IsReadOnly="True" Header="Siparis Veren Calisan" MinWidth="80" TextBlock.TextAlignment="Center" TextElement.FontStretch="Expanded">
+                    <DataGridTextColumn Binding="{Binding Path=Ad}" IsReadOnly="True" Header="Calisan Ad" MinWidth="80" TextBlock.TextAlignment="Center" TextElement.FontStretch="Expanded">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -111,6 +122,17 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
+
+                    <DataGridTextColumn Binding="{Binding Path=Soyad}" IsReadOnly="True" Header="Calisan Soyad" MinWidth="80" TextBlock.TextAlignment="Center" TextElement.FontStretch="Expanded">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="5,0,5,0"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
                     <DataGridTextColumn  IsReadOnly="True" Header="Düzenle" MinWidth="80" TextBlock.TextAlignment="Center" TextElement.FontStretch="Expanded">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">

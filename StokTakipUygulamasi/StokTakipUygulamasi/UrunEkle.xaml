@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StokTakipUygulamasi"
         mc:Ignorable="d"
-        Title="UrunEkle" Height="400" Width="900" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="{x:Null}">
+        Title="UrunEkle" Height="500" Width="900" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="{x:Null}">
     <Grid>
         <Canvas>
             <Image Source="images/icons/urunEkle.png" Canvas.Left="90" Height="58" Canvas.Top="41" Width="54" Panel.ZIndex="3
@@ -35,7 +35,7 @@
                 </Ellipse.Stroke>
             </Ellipse>
 
-            <Border Width="711" Height="358" Canvas.Left="103" Canvas.Top="23" CornerRadius="0,0,50,50" Background="#FFE0E0E0">
+            <Border Width="711" Height="400" Canvas.Left="103" Canvas.Top="23" CornerRadius="0,0,50,50" Background="#FFE0E0E0">
                 <Border.Effect>
                     <DropShadowEffect Opacity="0.35" Direction="275"/>
                 </Border.Effect>
@@ -60,9 +60,11 @@
             <TextBox Width="150" Height="24" Canvas.Left="275" Canvas.Top="244" x:Name="txtSatisFiyati" FontSize="18" Style="{DynamicResource MouseOverImageChange_Textbox}" PreviewTextInput="txtSatisFiyati_PreviewTextInput"/>
 
             <Label Content="Ölçü Birimi:" Canvas.Left="200" Canvas.Top="274" FontWeight="Bold"/>
-            <ComboBox Width="150" Height="25" Canvas.Left="275" Canvas.Top="274" Style="{DynamicResource ComboBoxFlatStyle}" x:Name="cmb_UrunOlcuBirimi">
+            <ComboBox Width="150" Height="25" Canvas.Left="275" Canvas.Top="274" Style="{DynamicResource ComboBoxFlatStyle}" x:Name="cmb_UrunOlcuBirimi"/>
                
-            </ComboBox>
+           
+            <Label Content="Ölcü Miktari:" Canvas.Left="200" Canvas.Top="304" FontWeight="Bold"/>
+            <TextBox Width="150" Height="24" Canvas.Left="275" Canvas.Top="304" x:Name="txtOlcuMiktari" FontSize="18" Style="{DynamicResource MouseOverImageChange_Textbox}" PreviewTextInput="txtOlcuMiktari_PreviewTextInput"/>
 
             <Button Panel.ZIndex="3" Style="{DynamicResource DaireButon}" Canvas.Left="557" Canvas.Top="220"  x:Name="btnResimEkle" Click="btnResimEkle_Click"/>
             <!--Resim-->
@@ -70,7 +72,7 @@
 
 
 
-            <Button Style="{DynamicResource UrunEkleButonu}" Width="225" Height="39" Content="Ürünü Ekle"  Canvas.Left="200" Margin="0" Canvas.Top="331" x:Name="btn_Urunu_Ekle" Click="btn_Urunu_Ekle_Click"></Button>
+            <Button Style="{DynamicResource UrunEkleButonu}" Width="225" Height="39" Content="Ürünü Ekle"  Canvas.Left="200" Margin="0" Canvas.Top="368" x:Name="btn_Urunu_Ekle" Click="btn_Urunu_Ekle_Click"></Button>
             <ToggleButton Style="{DynamicResource DaireButonbilgi}" Canvas.Left="757" Canvas.Top="17" Panel.ZIndex="3" x:Name="btn_Bilgi" Click="btn_Bilgi_Click"/>
             <Button Style="{DynamicResource DaireButonCikis}" Panel.ZIndex="3" Canvas.Left="699" Canvas.Top="17" x:Name="btnKapat" Click="btnKapat_Click" BorderBrush="#FFEAEBF4" BorderThickness="2"/>
 
@@ -90,8 +92,8 @@
 
             </Grid>
             <TextBox Width="150" Height="52" Canvas.Left="275" Canvas.Top="156" x:Name="txtAciklama" FontSize="18" Style="{DynamicResource MouseOverImageChange_Textbox}"/>
-            <Label Content="Satışta Mı:" Canvas.Left="200" Canvas.Top="301" FontWeight="Bold"/>
-            <CheckBox x:Name="checkbox_satistami" Width="15" Height="15" RenderTransformOrigin="25.013,13.84" Canvas.Left="275" Canvas.Top="308"/>
+            <Label Content="Satışta Mı:" Canvas.Left="200" Canvas.Top="331" FontWeight="Bold"/>
+            <CheckBox x:Name="checkbox_satistami" Width="15" Height="15" RenderTransformOrigin="25.013,13.84" Canvas.Left="275" Canvas.Top="338"/>
 
         </Canvas>
     </Grid>

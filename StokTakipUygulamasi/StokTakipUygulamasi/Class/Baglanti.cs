@@ -291,7 +291,7 @@ namespace StokTakipUygulamasi
             MySqlDataAdapter adapter;
             sbyte i = 0;
 
-            cmd = new MySqlCommand($@"select u.ID, u.Urun_Adi,u.Barkod_No,u.Aciklama,u.KDV_Orani,u.Kar_Orani,u.Satis_Fiyati,u.Satista_mi, ob.Olcu_Birimi 
+            cmd = new MySqlCommand($@"select u.ID, u.Urun_Adi,u.Barkod_No,u.Aciklama,u.KDV_Orani,u.Kar_Orani,u.Satis_Fiyati,u.Satista_mi, ob.Olcu_Birimi,u.Olcu_Miktar 
                                     from urunler u  join olcu_birimi ob on u.Olcu_Birimi_ID = ob.ID  Where u.Satista_Mi=1", baglan);
             baglan.Open();
             try
@@ -822,16 +822,59 @@ namespace StokTakipUygulamasi
 
         }
 
+        // Siparis Ürün Ekleme Fonksiyonu
+        public static bool SiparislereEkle(Prm veri)
+        {
+            sbyte donen = 0;
+            MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
+            MySqlCommand cmd = new MySqlCommand("insert into urun_siparis(Adet, Siparis_Tarihi, Urun_ID, Urun_Olcu_Birimi_ID, Toptanci_ID, " +
+                "Calisan_ID) values (@Adet, @Siparis_Tarihi, @Urun_ID, @Urun_Olcu_Birimi_ID, @Toptanci_ID, @Calisan_ID);", baglan);
 
+
+            cmd.Parameters.AddWithValue("@Adet", veri.SiparisAdet);
+            cmd.Parameters.AddWithValue("@Siparis_Tarihi", veri.SiparisTarihi);
+            cmd.Parameters.AddWithValue("@Urun_ID", veri.UrunID);
+            cmd.Parameters.AddWithValue("@Urun_Olcu_Birimi_ID", veri.Olcu_Birimi_ID);
+            cmd.Parameters.AddWithValue("@Toptanci_ID", veri.ToptanciID);
+            cmd.Parameters.AddWithValue("@Calisan_ID", veri.CalisanID);
+      
+
+            try
+            {
+                baglan.Open();
+                donen = 1;
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            finally
+            {
+                baglan.Dispose();
+            }
+
+            if (donen > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
         // Ürün Ekleme işlemi
         public static bool EklemeIslemi(Prm veri)
         {
             sbyte donen = 0;
             MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
             //MySqlCommand cmd = new MySqlCommand($@"insert into urunler (Urun_Adi,Barkod_No,Aciklama,KDV_Orani,Kar_Orani,Satis_Fiyati,Olcu_Birimi_ID,Satista_mi) values ('{veri.UrunAdi}','{veri.Barkod_No}', '{veri.Aciklama}', '{veri.KDV_Orani}','{veri.Kar_Orani}','{veri.Satis_Fiyati}','{veri.Olcu_Birimi_ID}','{veri.Satista_Mi}') ",baglan);
-            MySqlCommand cmd = new MySqlCommand("insert into urunler (Urun_Adi,Barkod_No,Aciklama,KDV_Orani,Kar_Orani,Satis_Fiyati,Olcu_Birimi_ID,Satista_mi,Resim) values (@Urun_Adi,@Barkod_No,@Aciklama,@KDV_Orani,@Kar_Orani,@Satis_Fiyati,@Olcu_Birimi_ID,@Satista_mi,@Resim)", baglan);
+            MySqlCommand cmd = new MySqlCommand("insert into urunler (Urun_Adi,Barkod_No,Aciklama,KDV_Orani,Kar_Orani,Satis_Fiyati,Olcu_Birimi_ID,Satista_mi,Olcu_Miktar,Resim) values (@Urun_Adi,@Barkod_No,@Aciklama,@KDV_Orani,@Kar_Orani,@Satis_Fiyati,@Olcu_Birimi_ID,@Satista_mi,@Olcu_Miktar,@Resim)", baglan);
             cmd.Parameters.AddWithValue("@Urun_Adi", veri.UrunAdi);
             cmd.Parameters.AddWithValue("@Satista_mi", veri.Satista_Mi);
+            cmd.Parameters.AddWithValue("@Olcu_Miktar",veri.Olcu_Miktar);
             if (!string.IsNullOrEmpty(veri.KDV_Orani.ToString()))  // KDV oranı null mu yoksa bir değer gelmiş mi diye bakıyoruz.
             {
                 cmd.Parameters.AddWithValue("@KDV_Orani", veri.KDV_Orani);
@@ -926,6 +969,7 @@ namespace StokTakipUygulamasi
         }
 
 
+      
 
         // Çalışanları çekme fonksiyonu
         public static bool calisanlari_cek(DataGrid grd)

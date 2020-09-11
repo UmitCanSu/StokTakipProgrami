@@ -46,6 +46,16 @@ namespace StokTakipUygulamasi.Class.Parametreler
         private int _indirimTabanFiyati;
         private bool _indirimde_mi;
 
+        //Siparis Güncelleme
+        private int _urun_ID;
+        private int _siparis_ID;
+        private DateTime _siparisTarihi;
+        private int _siparis_Adeti;
+        
+
+        private int _ToptanciID;
+        private int _CalisanID;
+
         // Gelen değerlerin hepsinin baş harfini büyük yaptık. (CultureInfo ile)
         public string UrunAdi { get => _urunAdi; set => _urunAdi = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value); }
         public string Barkod_No { get => _barkod_No; set => _barkod_No = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value); }
@@ -69,6 +79,11 @@ namespace StokTakipUygulamasi.Class.Parametreler
 
         #endregion
 
+        public int  ToptanciID { get => _ToptanciID; set => _ToptanciID = value; }
+        public int  CalisanID { get => _CalisanID; set => _CalisanID = value; }
+        public int UrunID { get => _urun_ID; set => _urun_ID = value; }
+        public int SiparisAdet { get => _siparis_Adeti; set => _siparis_Adeti = value; }
+        public DateTime SiparisTarihi { get => _siparisTarihi; set => _siparisTarihi = value; }
 
     }
 }

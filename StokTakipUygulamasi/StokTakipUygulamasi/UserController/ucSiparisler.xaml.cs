@@ -27,7 +27,7 @@ namespace StokTakipUygulamasi.UserController
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            String sorgu = $@"Select u.Urun_Adi, o.Olcu_Birimi, s.Adet, s.Siparis_Tarihi, t.Toptanci_Adi, c.Ad 
+            String sorgu = $@"Select u.Urun_Adi,o.Olcu_Birimi, u.Olcu_Miktar,s.Adet, s.Siparis_Tarihi, t.Toptanci_Adi, c.Ad,c.Soyad 
                             from urun_siparis s 
                             join olcu_birimi o on s.Urun_Olcu_Birimi_ID = o.ID 
                             join urunler u on u.ID= s.Urun_ID

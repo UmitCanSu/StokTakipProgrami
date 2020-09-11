@@ -38,7 +38,14 @@ namespace StokTakipUygulamasi
             this.Close();
         }
 
+        private void txtOlcuMiktari_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1)) // Harf girilmesini engelliyoruz.
+            {
+                e.Handled = true;
+            }
 
+        }
         private void txtKDVOrani_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!char.IsDigit(e.Text,e.Text.Length-1)) // Harf girilmesini engelliyoruz.
@@ -74,7 +81,7 @@ namespace StokTakipUygulamasi
         
         private void btn_Urunu_Ekle_Click(object sender, RoutedEventArgs e)
         {
-            if (txtUrunAdi.Text != "" && cmb_UrunOlcuBirimi.Text != "")
+            if (txtUrunAdi.Text != "" && cmb_UrunOlcuBirimi.Text != "" && txtOlcuMiktari.Text != "")
             {
                 Prm veri = new Prm();
                 Prm.BarkodNo = txtBarkodNo.Text;
@@ -84,6 +91,7 @@ namespace StokTakipUygulamasi
                 veri.Satista_Mi = checkbox_satistami.IsEnabled;
                 veri.Barkod_No = txtBarkodNo.Text;
                 veri.Aciklama = txtAciklama.Text;
+                veri.Olcu_Miktar = Convert.ToInt32(txtOlcuMiktari.Text);
                 veri.Resim = Prm.ResimAdi;
 
                 if (checkbox_satistami.IsChecked.Value)
@@ -146,7 +154,7 @@ namespace StokTakipUygulamasi
             else
             {
                 Prm.Hata = 1;
-                Prm.BilgiMesajiAlani = "Ürün adı ve ölçü birimi boş olamaz!";
+                Prm.BilgiMesajiAlani = "Ürün adı,  ölçü birimi ve ölçü miktari boş olamaz!";
                 BilgiEkrani be = new BilgiEkrani();
                 be.Show();
             }
@@ -214,5 +222,7 @@ namespace StokTakipUygulamasi
                 MessageBox.Show(ex.ToString());
             }
         }
+
+       
     }
 }
