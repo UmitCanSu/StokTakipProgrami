@@ -665,7 +665,7 @@ namespace StokTakipUygulamasi
 
 
         // Güncelleme İşlemi
-        public static bool   (Prm veri, string id)
+        public static bool UrunuGuncelle(Prm veri, string id)
         {
             sbyte donen = 0;
             MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=stoktakipvt;Uid=root;Pwd=;Charset=utf8");
