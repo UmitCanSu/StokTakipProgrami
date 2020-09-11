@@ -44,5 +44,13 @@ namespace StokTakipUygulamasi.UserController
             siparisÜrünEkle.ShowDialog();
             
         }
+
+
+        private void btnGuncelleClick(object sender, RoutedEventArgs e)
+        {
+            SiparisGuncelle siparisGünceller = new SiparisGuncelle();
+            siparisGünceller.Owner = gk;
+            siparisGünceller.ShowDialog();
+        }
     }
 }

@@ -151,7 +151,7 @@
         <Border Grid.Row="1">
             <DockPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{DynamicResource UrunEkleButonu}" Width="90" Height="50" Content="Güncelle"  x:Name="btnGuncelle"  Margin="10,25,0,25"  ></Button>
+                    <Button Style="{DynamicResource UrunEkleButonu}" Width="90" Height="50" Content="Güncelle"  x:Name="btnGuncelle"  Margin="10,25,0,25" Click="btnGuncelleClick"  ></Button>
                     <Button Style="{DynamicResource UrunEkleButonu}" Width="90" Height="50" Content="Sil"  x:Name="btnSil" Margin="10,25,0,25" ></Button>
                     <CheckBox  Content="Satışta Olmayanlar" FontSize="16" x:Name="check_Satista_Olmayanlar"  VerticalAlignment="Center" Margin="20,45,0,25" Height="30" BorderThickness="5" MinWidth="27" MinHeight="30" />
 

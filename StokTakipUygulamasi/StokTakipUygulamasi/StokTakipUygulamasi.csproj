@@ -115,6 +115,9 @@
     <Compile Include="IndirimdekilerGuncelle.xaml.cs">
       <DependentUpon>IndirimdekilerGuncelle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SiparisGuncelle.xaml.cs">
+      <DependentUpon>SiparisGuncelle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SiparisUrunEkle.xaml.cs">
       <DependentUpon>SiparisUrunEkle.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
       <DependentUpon>mainwindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SiparisGuncelle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SiparisUrunEkle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -122,3 +122,5 @@ C:\Users\UmitCanSU\Documents\GitHub\StokTakipProgrami\StokTakipUygulamasi\StokTa
 C:\Users\UmitCanSU\Documents\GitHub\StokTakipProgrami\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\UserController\ucSiparisler.baml
 C:\Users\UmitCanSU\Documents\GitHub\StokTakipProgrami\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\SiparisUrunEkle.g.cs
 C:\Users\UmitCanSU\Documents\GitHub\StokTakipProgrami\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\SiparisUrunEkle.baml
+C:\Users\UmitCanSU\Documents\GitHub\StokTakipProgrami\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\SiparisGuncelle.g.cs
+C:\Users\UmitCanSU\Documents\GitHub\StokTakipProgrami\StokTakipUygulamasi\StokTakipUygulamasi\obj\Debug\SiparisGuncelle.baml
